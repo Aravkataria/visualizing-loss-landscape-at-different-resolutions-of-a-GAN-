@@ -24,6 +24,8 @@ Loads a subset of real images for loss evaluation.
    2. 2D Heatmap
    3. 3D Surface Plot
    4. 3D Mesh Object (.PLY) for interactive exploration.
+   5. 1D Slice Plot
+   6. 1D dual-axis loss landscape plots
 5. Allows adjustable resolution (GRID_STEPS = 10, 50, 100, etc) to see the difference between coarse and fine-grained loss landscapes.
 6. Uses memory-saving techniques to perturb only the final layer and clear unused memory during computation.
 
@@ -43,6 +45,11 @@ But computation cost increases roughly with `GRID_STEPS²`
 
 ## Visualization Types
 
+### 1D dual-axis loss landscape plots
+Shows how the Generator Loss (blue) and Success Rate (red) change when the model’s parameters are slightly perturbed.
+Left Y-axis = Loss, Right Y-axis = Success %. Helps visualize both stability (flat vs. sharp minima) and discriminator response around trained weights.
+Solid and dashed lines represent different slices through the loss surface.
+
 ### 2D Contour Plot
 Shows the "top-down view" of loss values — like a heatmap of valleys and peaks.  
 Lower (darker) regions = smaller loss → better minima.
@@ -53,22 +60,30 @@ Helps understand if your GAN found a *flat*, *wide* minimum (good) or *sharp*, *
 
 ## GRID_STEPS (Resolution) vs Image comparison comparison 
 ### For 10:
+#### 1D dual-axis loss landscape plots
+![1D graph of loss landscape](10x10/loss_accuracy_1d.png)
 #### 2D graph of loss landscape 
 ![2D graph of loss landscape](10x10/loss_landscape_2d.png)
 #### 3D graph of loss landscape
 ![3D graph of loss landscape](10x10/loss_landscape_3d.png)
 ### For 50:
+#### 1D dual-axis loss landscape plots
+![1D graph of loss landscape](50x50/loss_accuracy_1d.png)
 #### 2D graph of loss landscape 
 ![2D graph of loss landscape](50x50/loss_landscape_2d.png)
 #### 3D graph of loss landscape
 ![3D graph of loss landscape](50x50/loss_landscape_3d.png)
 ### For 100:
+#### 1D dual-axis loss landscape plots
+![1D graph of loss landscape](100x100/loss_accuracy_1d.png)
 #### 2D graph of loss landscape 
 ![2D graph of loss landscape](100x100/loss_landscape_2d.png)
 #### 3D graph of loss landscape
 ![3D graph of loss landscape](100x100/loss_landscape_3d.png)
 ### For 200:
 #### 2D graph of loss landscape 
+#### 1D dual-axis loss landscape plots
+![1D graph of loss landscape](200x200/loss_accuracy_1d.png)
 ![2D graph of loss landscape](200x200/loss_landscape_2d.png)
 #### 3D graph of loss landscape
 ![3D graph of loss landscape](200x200/loss_landscape_3d.png)
