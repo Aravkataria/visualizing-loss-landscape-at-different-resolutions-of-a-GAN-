@@ -9,7 +9,8 @@ It’s like looking at the “terrain” your optimizer has to walk over — val
 - **Flat regions** → Stable minima, better generalization  
 - **Sharp regions** → Sensitive minima, potential overfitting
 
-       \(f(\alpha ,\beta )=\text{Loss}(\theta ^{*}+\alpha d_{1}+\beta d_{2})\)
+       f(α,β)=Loss(θ + α·d₁ + β·d₂)
+
 where **θ** is the model’s parameters, and **α**, **β** are step sizes in two random directions (**d₁**, **d₂**).
 
 ## what does the code do?
