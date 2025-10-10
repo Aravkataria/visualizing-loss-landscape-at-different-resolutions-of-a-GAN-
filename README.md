@@ -24,7 +24,7 @@ Loads a subset of real images for loss evaluation.
    2. 2D Heatmap
    3. 3D Surface Plot
    4. 3D Mesh Object (.PLY) for interactive exploration.
-5. Allows adjustable resolution (GRID_STEPS = 11, 50, 100) to see the difference between coarse and fine-grained loss landscapes.
+5. Allows adjustable resolution (GRID_STEPS = 10, 50, 100, etc) to see the difference between coarse and fine-grained loss landscapes.
 6. Uses memory-saving techniques to perturb only the final layer and clear unused memory during computation.
 
 ## Understanding GRID_STEPS (Resolution)
