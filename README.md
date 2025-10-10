@@ -74,8 +74,23 @@ Helps understand if your GAN found a *flat*, *wide* minimum (good) or *sharp*, *
 ![3D graph of loss landscape](200x200/loss_landscape_3d.png)
 
 ## How to Run
+1. Clone the Repository
+   
+          git clone https://github.com/AravKataria/visualizing-loss-landscape-at-different-resolutions-of-a-GAN-.git
+          cd visualizing-loss-landscape-at-different-resolutions-of-a-GAN-
+2. Install requirements
 
-git clone https://github.com/AravKataria/visualizing-loss-landscape-GAN.git
-cd visualizing-loss-landscape-GAN
-pip install -r requirements.txt
-python visualize_loss_landscape.py
+            pip install -r requirements.txt
+3. Prepare Your Files
+   Generator checkpoint: generator.pth
+   Discriminator checkpoint: discriminator.pth
+   Images folder: Folder with real images for evaluation
+4. Set the Resolution
+
+         GRID_STEPS = 11   # Fast, coarse grid
+         GRID_STEPS = 50   # Moderate grid (recommended)
+         GRID_STEPS = 100  # High-resolution, slower
+         GRID_STEPS = 200  # highest-resolution, very slow
+5. Run the Script
+   
+         python visualize_loss_landscape.py
