@@ -23,7 +23,7 @@ BATCH_SIZE = 4
 SUBSET_SIZE = 8
 PERTURB_SCALE = 0.5
 
-GEN_CHECKPOINT = "generatorpth"
+GEN_CHECKPOINT = "generator.pth"
 DISC_CHECKPOINT = "discriminatorpth"
 IMG_FOLDER = "image_folder"
 
@@ -154,3 +154,22 @@ plt.xlabel("α Direction"); plt.ylabel("β Direction")
 plt.title(f"GAN Loss Landscape ({GRID_STEPS}x{GRID_STEPS}) - 2D Heatmap")
 plt.savefig(f"loss_landscape_2d_{GRID_STEPS}.png", dpi=300)
 plt.close()
+
+#  1D SLICE PLOT
+plt.figure(figsize=(8,6))
+output_image_path_1d = "/kaggle/working/loss_landscape_1d_slice.png"
+print(f"Saving 1D Slice Plot to: {output_image_path_1d}")
+center_index = GRID_STEPS // 2
+loss_slice = Z[center_index, :]
+alpha_values = alphas
+plt.plot(alpha_values, loss_slice, 'b-', linewidth=2)
+plt.plot(0, loss_slice[center_index], 'rx', markersize=10, markeredgewidth=2, label='Trained Weights')
+plt.xlabel("Direction 1 (Perturbation $\\alpha$)")
+plt.ylabel("Generator Loss ($L_G$)")
+plt.title("GAN Generator Loss Landscape - 1D Slice ($\\beta \\approx 0$)")
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.legend()
+plt.ylim(bottom=np.min(loss_slice) * 0.95, top=np.max(loss_slice) * 1.05)
+plt.savefig(output_image_path_1d, dpi=300)
+plt.close()
+gc.collect()
