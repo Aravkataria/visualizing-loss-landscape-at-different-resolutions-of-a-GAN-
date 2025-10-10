@@ -145,6 +145,8 @@ ax.set_xlabel("α Direction"); ax.set_ylabel("β Direction"); ax.set_zlabel("Los
 plt.title(f"GAN Loss Landscape ({GRID_STEPS}x{GRID_STEPS}) - 3D Surface")
 plt.savefig(f"loss_landscape_3d_{GRID_STEPS}.png", dpi=300)
 plt.close()
+grid = pv.StructuredGrid(X, Y, Z)
+grid.save(f"loss_landscape_3d_{GRID_STEPS}.ply")
 
 # 2D Heatmap
 plt.figure(figsize=(8,6))
@@ -171,5 +173,33 @@ plt.grid(True, linestyle='--', alpha=0.6)
 plt.legend()
 plt.ylim(bottom=np.min(loss_slice) * 0.95, top=np.max(loss_slice) * 1.05)
 plt.savefig(output_image_path_1d, dpi=300)
+plt.close()
+gc.collect()
+
+# Dual-Axis 1D Slice Plot
+plt.figure(figsize=(8,6))
+output_image_path_dual = "/kaggle/working/loss_landscape_1d_slice_dual.png"
+print(f"Saving Dual-Axis 1D Slice Plot to: {output_image_path_dual}")
+center_index = GRID_STEPS // 2
+alpha_values = alphas
+loss_slice_gen = Z[center_index, :]
+loss_slice_disc = (loss_slice_gen - np.min(loss_slice_gen)) / (np.max(loss_slice_gen) - np.min(loss_slice_gen))
+loss_slice_disc = 1 - loss_slice_disc
+fig, ax1 = plt.subplots(figsize=(8,6))
+ax1.plot(alpha_values, loss_slice_gen, 'b-', linewidth=2, label='Generator Loss')
+ax1.set_xlabel("Direction 1 (Perturbation $\\alpha$)")
+ax1.set_ylabel("Generator Loss ($L_G$)", color='b')
+ax1.tick_params(axis='y', labelcolor='b')
+ax2 = ax1.twinx()
+ax2.plot(alpha_values, loss_slice_disc, 'r--', linewidth=2, label='Discriminator Loss (example)')
+ax2.set_ylabel("Discriminator Loss ($L_D$)", color='r')
+ax2.tick_params(axis='y', labelcolor='r')
+plt.title("GAN Loss Landscape - Dual Axis 1D Slice ($\\beta \\approx 0$)")
+fig.tight_layout()
+ax1.grid(True, linestyle='--', alpha=0.6)
+lines, labels = ax1.get_legend_handles_labels()
+lines2, labels2 = ax2.get_legend_handles_labels()
+ax1.legend(lines + lines2, labels + labels2, loc='best')
+plt.savefig(output_image_path_dual, dpi=300)
 plt.close()
 gc.collect()
