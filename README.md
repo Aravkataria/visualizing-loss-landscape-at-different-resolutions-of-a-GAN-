@@ -9,9 +9,8 @@ It’s like looking at the “terrain” your optimizer has to walk over — val
 - **Flat regions** → Stable minima, better generalization  
 - **Sharp regions** → Sensitive minima, potential overfitting
 
-\[
-L(\theta + \alpha \cdot d_1 + \beta \cdot d_2)
-\]
+       L(θ + α·d₁ + β·d₂)
+
 where **θ** is the model’s parameters, and **α**, **β** are step sizes in two random directions (**d₁**, **d₂**).
 
 ## what does the code do?
