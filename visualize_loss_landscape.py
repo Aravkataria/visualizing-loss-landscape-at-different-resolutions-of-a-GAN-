@@ -157,6 +157,15 @@ plt.title(f"GAN Loss Landscape ({GRID_STEPS}x{GRID_STEPS}) - 2D Heatmap")
 plt.savefig(f"loss_landscape_2d_{GRID_STEPS}.png", dpi=300)
 plt.close()
 
+#2D Topographic Map
+plt.figure(figsize=(8,6))
+contours = plt.contour(X, Y, Z, levels=20, cmap='viridis')
+plt.clabel(contours, inline=True, fontsize=8)
+plt.xlabel("α Direction"); plt.ylabel("β Direction")
+plt.title(f"GAN Loss Landscape ({GRID_STEPS}x{GRID_STEPS}) - 2D Topographic Map")
+plt.savefig(f"loss_landscape_2d_topo_{GRID_STEPS}.png", dpi=300)
+plt.close()
+
 #  1D SLICE PLOT
 plt.figure(figsize=(8,6))
 output_image_path_1d = "/kaggle/working/loss_landscape_1d_slice.png"
